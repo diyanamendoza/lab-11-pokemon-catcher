@@ -2,6 +2,7 @@ html {
     margin: 0;
     padding: 0;
     width: 100%;
+    background-color: black;
 }
 * {
     box-sizing: border-box;
@@ -9,11 +10,65 @@ html {
 
 body {
     font-family: 'Noto Sans JP', sans-serif;
+    color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 0;
-
 }
 
+header {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#poke-container {
+    padding-top: 50px;
+    font-family: 'Noto Sans JP', sans-serif;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+img {
+    width: 300px;
+    cursor: url(./assets/pokeball.png), pointer;
+}
+
+main {
+    font-family: 'Noto Sans JP', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+button {
+    height: 40px;
+    width: 150px;
+    margin: 20px;
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 15px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size:large;
+    text-transform: uppercase;
+    color: white;
+}
+
+button:active {
+    background-color:yellow;
+    color: black;
+}
+
+input {
+    visibility: hidden;
+}
