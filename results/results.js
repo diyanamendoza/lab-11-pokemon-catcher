@@ -9,9 +9,6 @@ let pokeCaughtStats = currentData.map(entry => entry.caught);
 
 // filter, map array of seens
 let pokeSeenStats = currentData.map(entry => entry.seen);
-console.log(currentData);
-console.log(pokeCaughtStats);
-console.log(pokeCaughtStats);
 
 const ctx = document.getElementById('seen-chart');
 new Chart(ctx, {

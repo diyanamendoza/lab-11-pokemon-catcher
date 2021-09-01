@@ -1,4 +1,4 @@
-import { getRandomPokemon, updateSeenCounts, renderPoke, startPlayCounter, resetCounts } from "./utils.js";
+import { getRandomPokemon, updateSeenCounts, renderPoke, startPlayCounter, resetCounts, renderPlayCount } from "./utils.js";
 import pokemonArray from "./pokemon.js";
 
 const playButton = document.getElementById('play');
@@ -19,19 +19,25 @@ pokeContainer.style.visibility = "hidden";
     updateSeenCounts(poke);
   };
 
+const roundCount = document.getElementById('round-count');
+renderPlayCount();
+roundCount.style.visibility = "hidden";
+
 // play button
 playButton.addEventListener('click', () => {
-// start play counter at 1
-  startPlayCounter();
 // hide button
   playButton.style.visibility = "hidden";
 // display poke - each catch updates play counter by 1
   pokeContainer.style.visibility = "visible";
 // show round
-  const roundText = document.getElementById('round-count');
-  // roundText.style.visibility ="hidden";
-  roundText.textContent = ('Click to catch!');
-});
+  const instructions = document.getElementById('instructions');
+  instructions.style.visibility = "hidden";
+  const click = document.getElementById('click');
+  click.textContent = ('Click to catch!');
 
+  startPlayCounter();
+  roundCount.style.visibility = "visible";
+
+});
 
 
