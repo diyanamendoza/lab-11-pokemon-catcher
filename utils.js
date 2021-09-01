@@ -123,6 +123,9 @@ export function startPlayCounter() {
 
 export function updatePlayCounter() {
   let playCounter = localStorage.getItem('PLAYCOUNTER');
+  const roundText = document.getElementById('round-count');
+  roundText.textContent = `You've caught ${playCounter}!`;
+
   let parsed = JSON.parse(playCounter);
   if(parsed < 10) {
     parsed++

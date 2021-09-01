@@ -28,8 +28,9 @@ playButton.addEventListener('click', () => {
 // display poke - each catch updates play counter by 1
   pokeContainer.style.visibility = "visible";
 // show round
-  // const roundText = document.getElementById('round-count');
-  // roundText.textContent = ('Round 1!');
+  const roundText = document.getElementById('round-count');
+  // roundText.style.visibility ="hidden";
+  roundText.textContent = ('Click to catch!');
 });
 
 

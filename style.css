@@ -54,6 +54,7 @@ main {
 button {
     height: 40px;
     width: 150px;
+    margin: 20px;
     background-color: black;
     border: 1px solid white;
     border-radius: 15px;
