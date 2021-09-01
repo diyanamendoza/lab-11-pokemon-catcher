@@ -77,3 +77,12 @@ button:active {
 input {
     visibility: hidden;
 }
+
+label {
+    font-family: 'Noto Sans JP', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: .8em;
+}
