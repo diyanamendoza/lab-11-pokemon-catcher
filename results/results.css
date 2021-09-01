@@ -2,7 +2,6 @@ html {
     margin: 0;
     padding: 0;
     width: 100%;
-    background-color: black;
 }
 * {
     box-sizing: border-box;
@@ -11,40 +10,17 @@ html {
 body {
     font-family: 'Noto Sans JP', sans-serif;
     color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
     margin: 0;
 }
 
 header {
     font-family: 'Noto Sans JP', sans-serif;
-    color: white;
+    color:black;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-}
-
-#poke-container {
-    padding-top: 50px;
-    font-family: 'Noto Sans JP', sans-serif;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-}
-
-img {
-    width: 300px;
-    cursor: url(./assets/pokeball.png), pointer;
-}
-
-img:hover {
-    border: 1px dotted red;
-    border-radius: 15px;
 }
 
 main {
@@ -53,7 +29,8 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0;
+    gap: 50px;
+    background-color: black;
 }
 
 button {
@@ -70,23 +47,11 @@ button {
     cursor: pointer;
 }
 
-button:active {
+button:hover {
     background-color: orange;
     color: black;
 }
 
-input {
-    visibility: hidden;
-}
-
-label {
-    font-family: 'Noto Sans JP', sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: .8em;
-}
 
 canvas {
     width: 75%;
@@ -94,14 +59,23 @@ canvas {
     padding: 20px;
 }
 
-p {
-    margin: 0;
-}
 #caught-pokes {
-    display:flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 #caught-pokes > img {
     width: 120px;
+}
+
+#caught-pokes > img:hover {
+    cursor: pointer;
+}
+
+#charts {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
 }

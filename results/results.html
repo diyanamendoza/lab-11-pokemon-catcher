@@ -8,24 +8,31 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="./results.css">
     <title>RESULTS</title>
 </head>
 
 <body>
     <header>
         <h1>Results</h1>
+        <a href="../index.html"><button>Play Again</button></a>
+        <h2>Your haul!</h2>
+        <div id="caught-pokes">
+        </div>
     </header>
     <main>
-        <a href="../index.html"><button>Play Again</button></a>
+
+        <div id="charts">
         <h2>How many times did you see each pokemon?</h2>
         <canvas id="seen-chart"></canvas>
         <h2>How many times did you catch each pokemon?</h2>
         <canvas id="caught-chart"></canvas>
+        </div>
         <script
         type="text/javascript"
         src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"
     ></script>
+
     <!-- <script type="module" src="app.js"></script> -->
 
 
