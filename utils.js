@@ -1,5 +1,4 @@
 //imports
-import pokemon from "./pokemon.js";
 import pokemonArray from "./pokemon.js";
 
 //export functions
@@ -130,8 +129,8 @@ export function startPlayCounter() {
 
 export function updatePlayCounter() {
   let playCounter = localStorage.getItem('PLAYCOUNTER');
-  const roundText = document.getElementById('round-count');
-  roundText.textContent = `You've caught ${playCounter}!`;
+  // const roundText = document.getElementById('round-count');
+  // roundText.textContent = `You've caught ${playCounter}!`;
 
   let parsed = JSON.parse(playCounter);
   if(parsed < 10) {
@@ -145,7 +144,13 @@ export function updatePlayCounter() {
   };
 };
 
-  function clearPokeLineUp() {
+export function renderPlayCount() {
+  let playCounter = localStorage.getItem('PLAYCOUNTER');
+  const roundText = document.getElementById('round-count');
+  roundText.textContent = `Round ${playCounter}!`;
+};
+
+function clearPokeLineUp() {
     const pokeContainer = document.getElementById('poke-container');
     let toClear = pokeContainer.getElementsByClassName('pokemon');
     for (let i = toClear.length-1; i>=0; i--) {
