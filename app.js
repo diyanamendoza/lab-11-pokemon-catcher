@@ -36,7 +36,7 @@ playButton.addEventListener('click', () => {
   click.textContent = ('Click to catch!');
 
   startPlayCounter();
-  roundCount.style.visibility = "visible";
+  // roundCount.style.visibility = "visible";
 
 });
 
