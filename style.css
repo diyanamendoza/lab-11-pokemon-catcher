@@ -86,3 +86,9 @@ label {
     align-items: center;
     font-size: .8em;
 }
+
+canvas {
+    width: 75%;
+    height: 500px;
+    padding: 20px;
+}
