@@ -29,19 +29,19 @@ export function getRandomPokemon() {
 }
 export function getSeenCounts(pokemonArray) {
     // pull from local storage
-    let seenCounts = localStorage.getItem('SEEN');
+    let seenCounts = localStorage.getItem('COUNTS');
     // if nothing in there yet, create area of poke objects
-    if (!seenCounts) {
+    if (seenCounts === null) {
       seenCounts = pokemonArray.map(entry => {
         let properties = {
           'name': entry.pokemon,
-          'seen': 0
+          'seen': 0,
+          'caught': 0
         }
         return properties;
       });
-      console.log(seenCounts);
       let stringSeenCounts = JSON.stringify(seenCounts);
-      localStorage.setItem('SEEN', stringSeenCounts);
+      localStorage.setItem('COUNTS', stringSeenCounts);
     }
     // if something in there, 
     const parsedSEEN = JSON.parse(seenCounts);
@@ -62,6 +62,65 @@ export function updateSeenCounts(poke) {
     })
   
     let stringUpdate = JSON.stringify(update);
-    localStorage.setItem('SEEN', stringUpdate);
+    localStorage.setItem('COUNTS', stringUpdate);
+  };
+
+  export function updateCaughtCounts(poke) {
+    let pokeName = poke.pokemon
+    let currentCounts = JSON.parse(localStorage.getItem('COUNTS'));
+    let caughtUpdate = currentCounts.map(entry => {
+        if(entry.name === pokeName) {
+            entry.caught++;
+            return entry;
+        } else {
+            return entry;
+        }
+    })
+    let stringCaughtUpdate = JSON.stringify(caughtUpdate);
+    localStorage.setItem('COUNTS', stringCaughtUpdate);
   };
   
+  export function renderPoke(poke) {
+    const pokeContainer = document.getElementById('poke-container');
+    const pokeLabel = document.createElement('label');
+    const pokeImg = document.createElement('img');
+    const pokeInput = document.createElement('input');
+  
+    pokeLabel.classList.add('pokemon');
+    pokeImg.src = poke.url_image;
+    pokeInput.value = poke.id;
+    console.log(poke.id);
+    pokeInput.type = 'radio';
+    pokeInput.setAttribute('name', 'pokemon');
+  
+    pokeContainer.append(pokeLabel);
+    pokeLabel.append(pokeInput, pokeImg);
+  
+    pokeInput.addEventListener('click', () => {
+      console.log(`you caught ${poke.pokemon}!`);
+      updateCaughtCounts(poke);
+    //   upPlayCounter();
+      window.location.reload();
+    })
+  
+  };
+
+  export function startPlayCounter() {
+      // when user clicks play, a trioCounter starts in local storage.
+      let playCounter = 0;
+      let string = JSON.stringify(play);
+      localStorage.setItem('PLAYCOUNTER', string);
+  };
+
+//   export function upPlayCounter() {
+//       // when user catches a poke, the playCounter goes up one
+//     if (!localStorage.getItem('PLAYCOUNTER')) {
+//           startPlayCounter();
+//       }
+
+//     let currentPlayCount = Number(localStorage.getItem('PLAYCOUNTER'));
+//     let updatedPlayCount = currentPlayCount++;
+//     localStorage.setItem('PLAYCOUNTER', (JSON.stringify(updatedPlayCount)));
+
+      // if playCounter = 10, alert time to see your results
+//   }
