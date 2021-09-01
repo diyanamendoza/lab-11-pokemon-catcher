@@ -90,6 +90,7 @@ export function renderPoke(poke) {
     const pokeLabel = document.createElement('label');
     const pokeImg = document.createElement('img');
     const pokeInput = document.createElement('input');
+    const pokeStats = document.createElement('p');
   
     pokeLabel.classList.add('pokemon');
     pokeImg.src = poke.url_image;
@@ -98,8 +99,14 @@ export function renderPoke(poke) {
     pokeInput.setAttribute('name', 'pokemon');
   
     pokeContainer.append(pokeLabel);
-    pokeLabel.append(pokeInput, pokeImg);
-  
+    pokeLabel.append(pokeInput, pokeImg, pokeStats);
+
+    //pokeStats stuff
+    let pokeStatsArray = getSeenCounts();
+    let thisPoke = pokeStatsArray.find(entry => entry.name === poke.pokemon);
+    pokeStats.textContent = `${poke.pokemon} | seen: ${thisPoke.seen} | caught: ${thisPoke.caught}`;
+
+    //eventlistener
     pokeInput.addEventListener('click', () => {
       // console.log(`you caught ${poke.pokemon}!`);
       updateCaughtCounts(poke);
@@ -133,7 +140,7 @@ export function updatePlayCounter() {
     localStorage.setItem('PLAYCOUNTER', string);
   } else { 
     clearPokeLineUp();
-    window.location = './results.html';
+    window.location = './results/results.html';
 
   };
 };
