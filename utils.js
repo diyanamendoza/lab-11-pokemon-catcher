@@ -132,6 +132,7 @@ export function updatePlayCounter() {
     let string = JSON.stringify(parsed);
     localStorage.setItem('PLAYCOUNTER', string);
   } else { 
+    clearPokeLineUp();
     window.location = './results.html';
 
   };
