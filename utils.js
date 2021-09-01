@@ -1,4 +1,5 @@
 //imports
+import pokemon from "./pokemon.js";
 import pokemonArray from "./pokemon.js";
 
 //export functions
@@ -27,25 +28,29 @@ export function getRandomPokemon() {
         pokemonArray[randomIndex3]
     ];
 }
+
+export function resetCounts(pokemonArray) {
+  let seenCounts = pokemonArray.map(entry => {
+    let properties = {
+      'name': entry.pokemon,
+      'seen': 0,
+      'caught': 0
+    }
+    return properties;
+  });
+  let stringSeenCounts = JSON.stringify(seenCounts);
+  localStorage.setItem('COUNTS', stringSeenCounts);
+}
+
 export function getSeenCounts(pokemonArray) {
     // pull from local storage
     let seenCounts = localStorage.getItem('COUNTS');
     // if nothing in there yet, create area of poke objects
     if (seenCounts === null) {
-      seenCounts = pokemonArray.map(entry => {
-        let properties = {
-          'name': entry.pokemon,
-          'seen': 0,
-          'caught': 0
-        }
-        return properties;
-      });
-      let stringSeenCounts = JSON.stringify(seenCounts);
-      localStorage.setItem('COUNTS', stringSeenCounts);
-    }
-    // if something in there, 
-    const parsedSEEN = JSON.parse(seenCounts);
-    return parsedSEEN;
+      resetCounts(pokemonArray);}
+      else {    // if something in there, 
+        const parsedSEEN = JSON.parse(seenCounts);
+        return parsedSEEN;}
   };
 
 export function updateSeenCounts(poke) {
@@ -80,7 +85,7 @@ export function updateSeenCounts(poke) {
     localStorage.setItem('COUNTS', stringCaughtUpdate);
   };
   
-  export function renderPoke(poke) {
+export function renderPoke(poke) {
     const pokeContainer = document.getElementById('poke-container');
     const pokeLabel = document.createElement('label');
     const pokeImg = document.createElement('img');
@@ -89,7 +94,6 @@ export function updateSeenCounts(poke) {
     pokeLabel.classList.add('pokemon');
     pokeImg.src = poke.url_image;
     pokeInput.value = poke.id;
-    console.log(poke.id);
     pokeInput.type = 'radio';
     pokeInput.setAttribute('name', 'pokemon');
   
@@ -97,30 +101,43 @@ export function updateSeenCounts(poke) {
     pokeLabel.append(pokeInput, pokeImg);
   
     pokeInput.addEventListener('click', () => {
-      console.log(`you caught ${poke.pokemon}!`);
+      // console.log(`you caught ${poke.pokemon}!`);
       updateCaughtCounts(poke);
-    //   upPlayCounter();
-      window.location.reload();
-    })
-  
-  };
+      updatePlayCounter();
+      clearPokeLineUp();
 
-  export function startPlayCounter() {
+      let pokeLineUp = getRandomPokemon();
+
+      for(let poke of pokeLineUp) {
+        renderPoke(poke);
+        updateSeenCounts(poke);
+    }
+  })};
+
+export function startPlayCounter() {
       // when user clicks play, a trioCounter starts in local storage.
-      let playCounter = 0;
-      let string = JSON.stringify(play);
+      let playCounter = 1;
+      let string = JSON.stringify(playCounter);
       localStorage.setItem('PLAYCOUNTER', string);
   };
 
-//   export function upPlayCounter() {
-//       // when user catches a poke, the playCounter goes up one
-//     if (!localStorage.getItem('PLAYCOUNTER')) {
-//           startPlayCounter();
-//       }
+export function updatePlayCounter() {
+  let playCounter = localStorage.getItem('PLAYCOUNTER');
+  let parsed = JSON.parse(playCounter);
+  if(parsed < 10) {
+    parsed++
+    let string = JSON.stringify(parsed);
+    localStorage.setItem('PLAYCOUNTER', string);
+  } else { 
+    window.location = './results.html';
 
-//     let currentPlayCount = Number(localStorage.getItem('PLAYCOUNTER'));
-//     let updatedPlayCount = currentPlayCount++;
-//     localStorage.setItem('PLAYCOUNTER', (JSON.stringify(updatedPlayCount)));
+  };
+};
 
-      // if playCounter = 10, alert time to see your results
-//   }
+  function clearPokeLineUp() {
+    const pokeContainer = document.getElementById('poke-container');
+    let toClear = pokeContainer.getElementsByClassName('pokemon');
+    for (let i = toClear.length-1; i>=0; i--) {
+      let childNode = toClear[i];
+      childNode.parentNode.removeChild(childNode);
+    }};

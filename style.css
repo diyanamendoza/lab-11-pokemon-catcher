@@ -18,6 +18,15 @@ body {
     margin: 0;
 }
 
+header {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 #poke-container {
     padding-top: 50px;
     font-family: 'Noto Sans JP', sans-serif;
@@ -30,6 +39,7 @@ body {
 
 img {
     width: 300px;
+    cursor: url(./assets/pokeball.png), pointer;
 }
 
 main {
@@ -43,7 +53,7 @@ main {
 
 button {
     height: 40px;
-    width: 100px;
+    width: 150px;
     background-color: black;
     border: 1px solid white;
     border-radius: 15px;
@@ -51,6 +61,11 @@ button {
     font-size:large;
     text-transform: uppercase;
     color: white;
+}
+
+button:active {
+    background-color:yellow;
+    color: black;
 }
 
 input {
