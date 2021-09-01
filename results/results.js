@@ -1,4 +1,7 @@
 import { getSeenCounts } from "../utils.js";
+import pokemonArray from "../pokemon.js";
+
+
 
 let currentData = getSeenCounts();
 // map array of names from the counts data
@@ -109,4 +112,22 @@ new Chart(caughtChart, {
             }
         }
     }
+});
+
+let pokesCaught = currentData
+    .filter(entry => entry.caught > 0)
+    .map(entry => entry.name);
+
+pokesCaught.forEach(poke => {
+    const caughtPoke = pokemonArray.find(entry => entry.pokemon === poke);
+
+    const pokeImg = document.createElement('img');
+    const pokeName = document.createElement('p');
+    const caughtPokesDiv = document.getElementById('caught-pokes');
+    pokeImg.src = caughtPoke.url_image;
+    pokeName.textContent = poke;
+    caughtPokesDiv.append(pokeImg, pokeName);
+    pokeImg.addEventListener('click', () => {
+        window.location.href = caughtPoke.pokedex;
+    })
 });
